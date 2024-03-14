@@ -1,0 +1,26 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pinecone-client = "*"
+langchain = "*"
+langchain-openai = "*"
+langchain-pinecone = "*"
+langchain-community = "*"
+unstructured = "*"
+pdf2image = "*"
+"pdfminer.six" = "*"
+opencv-python = "*"
+pillow-heif = "*"
+unstructured-inference = "*"
+pytesseract = "*"
+pikepdf = "*"
+pypdf = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"
+python_full_version = "3.11.7"
