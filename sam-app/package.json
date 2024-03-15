@@ -1,0 +1,8 @@
+{
+    "scripts": {
+        "default": "npm run build && npm run deploy",
+        "build": "sam build --cached",
+        "deploy": "sam deploy --no-confirm-changeset",
+        "get-lambda-layer": "aws lambda get-layer-version --layer-name Layer --version-number 1"
+    }
+}

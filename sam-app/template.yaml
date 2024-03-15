@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+  Layer:
+    Type: AWS::Serverless::LayerVersion
+    Metadata:
+      BuildMethod: python3.11
+    Properties:
+      ContentUri: layer/
+  Lambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Architectures:
+      - x86_64
+      CodeUri: lambda/
+      Environment:
+        Variables:
+          SECRET_ARN: !Ref Secret
+      Events:
+        WebHook:
+          Type: Api
+          Properties:
+            Path: /post
+            Method: post
+      Handler: app.lambda_handler
+      Layers:
+      - !Ref Layer
+      Policies:
+      - arn:aws:iam::aws:policy/SecretsManagerReadWrite
+      Runtime: python3.11
+
+  Secret:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      SecretString: "{\"CHANNEL_ACCESS_TOKEN\":\"placeholder\",\"CHANNEL_SECRET\":\"placeholder\"}"
+
+Outputs:
+  LambdaApi:
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/post/"
