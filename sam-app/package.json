@@ -2,7 +2,7 @@
     "scripts": {
         "default": "npm run build && npm run deploy",
         "build": "sam build --cached",
-        "deploy": "sam deploy --no-confirm-changeset",
+        "deploy": "sam deploy --no-confirm-changeset --resolve-image-repos",
         "get-lambda-layer": "aws lambda get-layer-version --layer-name Layer --version-number 1"
     }
 }
