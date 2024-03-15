@@ -4,8 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-line-bot-sdk = "*"
-boto3 = "*"
 langchain = "*"
 langchain-openai = "*"
 langchain-pinecone = "*"
@@ -14,3 +12,4 @@ langchain-pinecone = "*"
 
 [requires]
 python_version = "3.11"
+python_full_version = "3.11.7"

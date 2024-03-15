@@ -13,20 +13,23 @@ Resources:
       Environment:
         Variables:
           SECRET_ARN: !Ref Secret
+          PINECONE_INDEX_NAME: line-bot-openai
       Events:
         WebHook:
           Type: Api
           Properties:
             Path: /post
             Method: post
+      MemorySize: 256
       PackageType: Image
       Policies:
       - arn:aws:iam::aws:policy/SecretsManagerReadWrite
+      Timeout: 16
 
   Secret:
     Type: AWS::SecretsManager::Secret
     Properties:
-      SecretString: "{\"CHANNEL_ACCESS_TOKEN\":\"placeholder\",\"CHANNEL_SECRET\":\"placeholder\"}"
+      SecretString: "{\"CHANNEL_ACCESS_TOKEN\":\"line\",\"CHANNEL_SECRET\":\"line\",\"OPENAI_API_KEY\":\"openai\",\"PINECONE_API_KEY\":\"pinecone\"}"
 
 Outputs:
   LambdaApi:
